@@ -8,10 +8,7 @@ import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.TermQuery;
-import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.*;
 import org.apache.lucene.store.Directory;
 import org.junit.Test;
 
@@ -46,9 +43,12 @@ public class BasicSearchingTest extends TestCase {
         IndexReader reader = DirectoryReader.open(dir);
         IndexSearcher searcher = new IndexSearcher(reader);
         QueryParser parser = new QueryParser("contents", new StandardAnalyzer());
-        Query query = parser.parse("apache");
+        Query query = parser.parse("java*");
         TopDocs docs = searcher.search(query, 10);
-        assertEquals("Apache", 3, docs.totalHits);
+        ScoreDoc[] scoreDocs = docs.scoreDocs;
+        for (ScoreDoc scoreDoc : scoreDocs) {
+            System.out.println(searcher.doc(scoreDoc.doc).get("fullpath"));
+        }
         reader.close();
         dir.close();
     }

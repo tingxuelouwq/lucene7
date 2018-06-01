@@ -27,7 +27,7 @@ public class Indexer {
 
     public static void main(String[] args) throws IOException {
         String indexDir = "D:\\Lucene\\Index";  // 索引存放目录
-        String dataDir = "D:\\Lucene\\Data";    // 原始内容目录
+        String dataDir = "D:\\Lucene\\TEST";    // 原始内容目录
 
         long start = System.currentTimeMillis();
         Indexer indexer = new Indexer(indexDir);
