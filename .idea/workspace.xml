@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3d42ea9-c983-43f2-9f75-cfd8f22ac557" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kevin/chap2/LockTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kevin/chap3/NearRealTimeTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kevin/chap1/IndexerForLuceneAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kevin/chap3/Explainer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kevin/chap3/QueryTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kevin/chap1/Indexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kevin/chap1/Indexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kevin/chap3/BasicSearchingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kevin/chap3/BasicSearchingTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kevin/chap1/Indexer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kevin/chap1/Indexer.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -23,60 +21,92 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="IndexReader.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/IndexReader.java">
+      <file leaf-file-name="NumericDocValues.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/NumericDocValues.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
+            <state relative-caret-position="153">
+              <caret line="24" column="66" lean-forward="true" selection-start-line="24" selection-start-column="66" selection-end-line="24" selection-end-column="66" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BasicSearchingTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kevin/chap3/BasicSearchingTest.java">
+      <file leaf-file-name="BinaryDocValues.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/BinaryDocValues.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="49" column="43" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="43" />
+            <state relative-caret-position="357">
+              <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NearRealTimeTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kevin/chap3/NearRealTimeTest.java">
+      <file leaf-file-name="BytesRef.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/util/BytesRef.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="619">
+            <state relative-caret-position="136">
+              <caret line="79" column="46" lean-forward="true" selection-start-line="79" selection-start-column="46" selection-end-line="79" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SortedDocValues.java" pinned="false" current-in-tab="true">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/SortedDocValues.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SortedSetDocValues.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/SortedSetDocValues.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="287">
+              <caret line="38" column="59" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SortedNumericDocValues.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/SortedNumericDocValues.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="25" column="63" selection-start-line="25" selection-start-column="63" selection-end-line="25" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SortedDocValuesField.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/document/SortedDocValuesField.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="714">
               <caret line="65" column="22" lean-forward="true" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DirectoryReader.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/DirectoryReader.java">
+      <file leaf-file-name="DocValues.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/DocValues.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="83" column="38" lean-forward="true" selection-start-line="83" selection-start-column="38" selection-end-line="83" selection-end-column="38" />
+            <state relative-caret-position="153">
+              <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IndexWriter.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/IndexWriter.java">
+      <file leaf-file-name="DocValuesIterator.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/DocValuesIterator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="1462" column="14" selection-start-line="1462" selection-start-column="14" selection-end-line="1462" selection-end-column="14" />
-              <folding>
-                <element signature="e#160720#160721#0" expanded="true" />
-                <element signature="e#160764#160765#0" expanded="true" />
-                <element signature="e#173707#173708#0" expanded="true" />
-                <element signature="e#173747#173748#0" expanded="true" />
-                <element signature="e#182469#182470#0" expanded="true" />
-                <element signature="e#182521#182522#0" expanded="true" />
-                <element signature="e#183678#183679#0" expanded="true" />
-                <element signature="e#183701#183702#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="85">
+              <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DocIdSetIterator.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/search/DocIdSetIterator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="27" column="3" lean-forward="true" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -116,9 +146,12 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/kevin/chap2/LockTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kevin/chap2/IndexingTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kevin/chap1/Indexer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kevin/chap3/BasicSearchingTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kevin/chap3/NearRealTimeTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kevin/chap3/Explainer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kevin/chap1/Indexer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kevin/chap1/IndexerForLuceneAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kevin/chap3/QueryTest.java" />
       </list>
     </option>
   </component>
@@ -151,10 +184,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1272" />
-    <option name="y" value="-8" />
+    <option name="x" value="1092" />
+    <option name="y" value="70" />
     <option name="width" value="1296" />
-    <option name="height" value="1000" />
+    <option name="height" value="1033" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -357,7 +390,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -402,15 +436,6 @@
             </path>
             <path>
               <item name="lucene7" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lucene7" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kevin" type="462c0819:PsiDirectoryNode" />
-              <item name="chap3" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lucene7" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
             <path>
@@ -443,8 +468,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -470,9 +494,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.NearRealTimeTest.testNearRealTime">
+  <component name="RunManager" selected="Application.IndexerForLuceneAction">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+    </configuration>
+    <configuration name="Explainer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.kevin.chap3.Explainer" />
+      <module name="lucene7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.kevin.chap3.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
     </configuration>
     <configuration name="Indexer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.kevin.chap1.Indexer" />
@@ -485,10 +520,21 @@
         </pattern>
       </extension>
     </configuration>
+    <configuration name="IndexerForLuceneAction" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.kevin.chap1.IndexerForLuceneAction" />
+      <module name="lucene7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.kevin.chap1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
-    <configuration name="BasicSearchingTest.testQueryParser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="QueryTest.testKeyword" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="lucene7" />
       <extension name="coverage">
         <pattern>
@@ -499,8 +545,8 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.kevin.chap3" />
-      <option name="MAIN_CLASS_NAME" value="com.kevin.chap3.BasicSearchingTest" />
-      <option name="METHOD_NAME" value="testQueryParser" />
+      <option name="MAIN_CLASS_NAME" value="com.kevin.chap3.QueryTest" />
+      <option name="METHOD_NAME" value="testKeyword" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -511,7 +557,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="BasicSearchingTest.testTerm" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="QueryTest.testTermRangQuery" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="lucene7" />
       <extension name="coverage">
         <pattern>
@@ -522,54 +568,8 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.kevin.chap3" />
-      <option name="MAIN_CLASS_NAME" value="com.kevin.chap3.BasicSearchingTest" />
-      <option name="METHOD_NAME" value="testTerm" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration name="IndexingTest.testIndexReader" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="lucene7" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.kevin.chap2.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.kevin.chap2" />
-      <option name="MAIN_CLASS_NAME" value="com.kevin.chap2.IndexingTest" />
-      <option name="METHOD_NAME" value="testIndexReader" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration name="NearRealTimeTest.testNearRealTime" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="lucene7" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.kevin.chap3.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.kevin.chap3" />
-      <option name="MAIN_CLASS_NAME" value="com.kevin.chap3.NearRealTimeTest" />
-      <option name="METHOD_NAME" value="testNearRealTime" />
+      <option name="MAIN_CLASS_NAME" value="com.kevin.chap3.QueryTest" />
+      <option name="METHOD_NAME" value="testTermRangQuery" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -634,19 +634,19 @@
       <method />
     </configuration>
     <list>
-      <item itemvalue="JUnit.IndexingTest.testIndexReader" />
       <item itemvalue="Application.Indexer" />
-      <item itemvalue="JUnit.BasicSearchingTest.testTerm" />
-      <item itemvalue="JUnit.BasicSearchingTest.testQueryParser" />
-      <item itemvalue="JUnit.NearRealTimeTest.testNearRealTime" />
+      <item itemvalue="Application.Explainer" />
+      <item itemvalue="Application.IndexerForLuceneAction" />
+      <item itemvalue="JUnit.QueryTest.testKeyword" />
+      <item itemvalue="JUnit.QueryTest.testTermRangQuery" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.NearRealTimeTest.testNearRealTime" />
-        <item itemvalue="JUnit.BasicSearchingTest.testQueryParser" />
+        <item itemvalue="Application.IndexerForLuceneAction" />
+        <item itemvalue="JUnit.QueryTest.testTermRangQuery" />
+        <item itemvalue="JUnit.QueryTest.testKeyword" />
+        <item itemvalue="Application.Explainer" />
         <item itemvalue="Application.Indexer" />
-        <item itemvalue="JUnit.BasicSearchingTest.testTerm" />
-        <item itemvalue="JUnit.IndexingTest.testIndexReader" />
       </list>
     </recent_temporary>
   </component>
@@ -683,7 +683,8 @@
       <workItem from="1527661482866" duration="1000" />
       <workItem from="1527661496369" duration="1355000" />
       <workItem from="1527727999759" duration="12285000" />
-      <workItem from="1527815128008" duration="10278000" />
+      <workItem from="1527815128008" duration="10316000" />
+      <workItem from="1528073818577" duration="11711000" />
     </task>
     <task id="LOCAL-00001" summary="锁">
       <created>1527679328772</created>
@@ -692,46 +693,54 @@
       <option name="project" value="LOCAL" />
       <updated>1527679328772</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="近实时搜索">
+      <created>1527844582307</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1527844582307</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="BasicSearchingTest_testQueryParser - 2018.06.01 at 15h 26m 55s.xml">
-      <configuration name="BasicSearchingTest.testQueryParser" configurationId="JUnit" />
+    <history-entry file="QueryTest_testTermRangQuery - 2018.06.04 at 11h 11m 14s.xml">
+      <configuration name="QueryTest.testTermRangQuery" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BasicSearchingTest_testQueryParser - 2018.06.01 at 15h 27m 05s.xml">
-      <configuration name="BasicSearchingTest.testQueryParser" configurationId="JUnit" />
+    <history-entry file="QueryTest_testTermRangQuery - 2018.06.04 at 11h 13m 34s.xml">
+      <configuration name="QueryTest.testTermRangQuery" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BasicSearchingTest_testQueryParser - 2018.06.01 at 15h 27m 27s.xml">
-      <configuration name="BasicSearchingTest.testQueryParser" configurationId="JUnit" />
+    <history-entry file="QueryTest_testTermRangQuery - 2018.06.04 at 11h 13m 59s.xml">
+      <configuration name="QueryTest.testTermRangQuery" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BasicSearchingTest_testQueryParser - 2018.06.01 at 15h 27m 37s.xml">
-      <configuration name="BasicSearchingTest.testQueryParser" configurationId="JUnit" />
+    <history-entry file="QueryTest_testTermRangQuery - 2018.06.04 at 11h 14m 10s.xml">
+      <configuration name="QueryTest.testTermRangQuery" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BasicSearchingTest_testQueryParser - 2018.06.01 at 15h 27m 49s.xml">
-      <configuration name="BasicSearchingTest.testQueryParser" configurationId="JUnit" />
+    <history-entry file="QueryTest_testTermRangQuery - 2018.06.04 at 11h 14m 15s.xml">
+      <configuration name="QueryTest.testTermRangQuery" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BasicSearchingTest_testQueryParser - 2018.06.01 at 15h 28m 09s.xml">
-      <configuration name="BasicSearchingTest.testQueryParser" configurationId="JUnit" />
+    <history-entry file="QueryTest_testTermRangQuery - 2018.06.04 at 11h 14m 26s.xml">
+      <configuration name="QueryTest.testTermRangQuery" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BasicSearchingTest_testQueryParser - 2018.06.01 at 15h 28m 36s.xml">
-      <configuration name="BasicSearchingTest.testQueryParser" configurationId="JUnit" />
+    <history-entry file="QueryTest_testTermRangQuery - 2018.06.04 at 11h 17m 24s.xml">
+      <configuration name="QueryTest.testTermRangQuery" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BasicSearchingTest_testQueryParser - 2018.06.01 at 15h 29m 30s.xml">
-      <configuration name="BasicSearchingTest.testQueryParser" configurationId="JUnit" />
+    <history-entry file="QueryTest_testTermRangQuery - 2018.06.04 at 11h 17m 40s.xml">
+      <configuration name="QueryTest.testTermRangQuery" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BasicSearchingTest_testQueryParser - 2018.06.01 at 15h 29m 47s.xml">
-      <configuration name="BasicSearchingTest.testQueryParser" configurationId="JUnit" />
+    <history-entry file="QueryTest_testTermRangQuery - 2018.06.04 at 11h 17m 55s.xml">
+      <configuration name="QueryTest.testTermRangQuery" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="NearRealTimeTest_testNearRealTime - 2018.06.01 at 16h 49m 56s.xml">
-      <configuration name="NearRealTimeTest.testNearRealTime" configurationId="JUnit" />
+    <history-entry file="QueryTest_testTermRangQuery - 2018.06.04 at 11h 20m 00s.xml">
+      <configuration name="QueryTest.testTermRangQuery" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74325000" />
+    <option name="totallyTimeSpent" value="86074000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1272" y="-8" width="1296" height="1000" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -739,10 +748,10 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.28236246" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" visible="true" weight="0.28236246" />
       <window_info anchor="bottom" id="Tail" order="7" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info id="Structure" order="1" sideWeight="0.50950116" weight="0.32119742" />
+      <window_info id="Structure" order="1" sideWeight="0.50950116" weight="0.42637542" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -752,9 +761,9 @@
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.30403802" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.30403802" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4904988" visible="true" weight="0.32119742" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4904988" visible="true" weight="0.32686085" />
       <window_info anchor="bottom" id="Problems" order="7" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -773,163 +782,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="锁" />
-    <option name="LAST_COMMIT_MESSAGE" value="锁" />
+    <MESSAGE value="近实时搜索" />
+    <option name="LAST_COMMIT_MESSAGE" value="近实时搜索" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/analysis/standard/StandardAnalyzer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="51" column="65" selection-start-line="51" selection-start-column="58" selection-end-line="51" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/analysis/StopwordAnalyzerBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-340">
-          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" column="48" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/document/StoredField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/document/FieldType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="389" column="14" selection-start-line="389" selection-start-column="14" selection-end-line="389" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/DocValuesType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="32" column="2" selection-start-line="32" selection-start-column="2" selection-end-line="32" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Softwares/Java/jdk1.8.0_131/src.zip!/java/lang/Long.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13634">
-          <caret line="834" column="23" selection-start-line="834" selection-start-column="23" selection-end-line="834" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/document/NumericDocValuesField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="66" column="20" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1.jar!/org/apache/lucene/search/SortedNumericSortField.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/search/SortedNumericSortField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="50" column="58" lean-forward="true" selection-start-line="50" selection-start-column="58" selection-end-line="50" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/search/SortField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/document/TextField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/IndexableFieldType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="31" column="22" lean-forward="true" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/document/Field.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="295" column="9" lean-forward="true" selection-start-line="295" selection-start-column="9" selection-end-line="295" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/store/SimpleFSDirectory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/store/FileSwitchDirectory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/store/IOContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/store/RAMDirectory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="52" column="40" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/store/BaseDirectory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="25" column="50" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/store/NIOFSDirectory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="52" column="13" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/store/MMapDirectory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="61" column="64" lean-forward="true" selection-start-line="61" selection-start-column="64" selection-end-line="61" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/store/FSDirectory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="755">
-          <caret line="126" column="22" selection-start-line="126" selection-start-column="22" selection-end-line="126" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kevin/chap2/BoostingTest.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/store/LockFactory.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1042,12 +898,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="518">
           <caret line="61" column="14" selection-start-line="61" selection-start-column="14" selection-end-line="61" selection-end-column="14" />
-          <folding>
-            <element signature="e#2747#2748#0" expanded="true" />
-            <element signature="e#2793#2794#0" expanded="true" />
-            <element signature="e#4334#4335#0" expanded="true" />
-            <element signature="e#4380#4381#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1062,19 +912,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
           <caret line="75" column="30" lean-forward="true" selection-start-line="75" selection-start-column="30" selection-end-line="75" selection-end-column="30" />
-          <folding>
-            <element signature="e#22854#22855#0" expanded="true" />
-            <element signature="e#22896#22897#0" expanded="true" />
-            <element signature="e#23070#23071#0" expanded="true" />
-            <element signature="e#23099#23100#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kevin/chap1/Indexer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -1119,14 +956,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kevin/chap3/BasicSearchingTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
+        <state relative-caret-position="629">
           <caret line="49" column="43" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/IndexWriter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
+        <state relative-caret-position="23613">
           <caret line="1462" column="14" selection-start-line="1462" selection-start-column="14" selection-end-line="1462" selection-end-column="14" />
           <folding>
             <element signature="e#160720#160721#0" expanded="true" />
@@ -1143,25 +980,203 @@
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/IndexReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
+        <state relative-caret-position="884">
           <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/DirectoryReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="83" column="38" lean-forward="true" selection-start-line="83" selection-start-column="38" selection-end-line="83" selection-end-column="38" />
+        <state relative-caret-position="1020">
+          <caret line="83" column="38" selection-start-line="83" selection-start-column="38" selection-end-line="83" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kevin/chap3/NearRealTimeTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="619">
-          <caret line="65" column="22" lean-forward="true" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
+        <state relative-caret-position="448">
+          <caret line="53" column="23" lean-forward="true" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kevin/chap3/Explainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="44" column="26" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/document/Field.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="61" column="15" selection-start-line="61" selection-start-column="15" selection-end-line="61" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/document/BinaryDocValuesField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="40" column="44" lean-forward="true" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/document/IntPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="105" column="9" selection-start-line="105" selection-start-column="9" selection-end-line="105" selection-end-column="9" />
+          <folding>
+            <element signature="e#3930#3931#0" expanded="true" />
+            <element signature="e#3987#3988#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Softwares/Java/jdk1.8.0_131/src.zip!/java/util/Date.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="883" column="16" selection-start-line="883" selection-start-column="16" selection-end-line="883" selection-end-column="16" />
+          <folding>
+            <element signature="e#37718#37719#0" expanded="true" />
+            <element signature="e#37754#37755#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/junit/framework/TestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="75" column="22" selection-start-line="75" selection-start-column="22" selection-end-line="75" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kevin/chap1/Indexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="90" column="35" selection-start-line="90" selection-start-column="32" selection-end-line="90" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/search/TermRangeQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="90" column="31" selection-start-line="90" selection-start-column="31" selection-end-line="90" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kevin/chap1/IndexerForLuceneAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="61" column="34" lean-forward="true" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/DocValuesType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="32" column="2" selection-start-line="32" selection-start-column="2" selection-end-line="32" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kevin/chap3/QueryTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="53" column="56" lean-forward="true" selection-start-line="53" selection-start-column="56" selection-end-line="53" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/document/SortedNumericDocValuesRangeQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="36" column="47" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/document/NumericDocValuesField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="52" column="3" lean-forward="true" selection-start-line="52" selection-start-column="3" selection-end-line="52" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/SortedSetDocValues.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="38" column="59" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/DocValues.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/document/SortedDocValuesField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="65" column="22" lean-forward="true" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/SortedNumericDocValues.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="25" column="63" selection-start-line="25" selection-start-column="63" selection-end-line="25" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/DocValuesIterator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/search/DocIdSetIterator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="27" column="3" lean-forward="true" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/NumericDocValues.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="24" column="66" lean-forward="true" selection-start-line="24" selection-start-column="66" selection-end-line="24" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/BinaryDocValues.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/util/BytesRef.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="79" column="46" lean-forward="true" selection-start-line="79" selection-start-column="46" selection-end-line="79" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.3.1/lucene-core-7.3.1-sources.jar!/org/apache/lucene/index/SortedDocValues.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
         </state>
       </provider>
     </entry>
