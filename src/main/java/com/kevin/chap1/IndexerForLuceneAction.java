@@ -11,7 +11,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -24,33 +26,45 @@ import java.util.Properties;
  */
 public class IndexerForLuceneAction {
     public static void main(String[] args) throws IOException, ParseException {
-        String indexDir = "D:\\Lucene\\Index";
-        String dataDir = "D:\\Lucene\\TEST";
+        String dataDir = "D:\\Lucene\\data";
+        String indexDir = "D:\\Lucene\\index";
+        List<File> results = new ArrayList<>();
+        findFiles(results, new File(dataDir));
+        System.out.println(results.size() + " books to index");
         Directory dir = FSDirectory.open(Paths.get(indexDir));
         IndexWriter writer = new IndexWriter(dir, new IndexWriterConfig());
-        File[] files = new File(dataDir).listFiles();
-        for (File file : files) {
-            Document doc = getDocument(file);
+        for (File file : results) {
+            Document doc = getDocument(dataDir, file);
             writer.addDocument(doc);
         }
         writer.close();
         dir.close();
     }
 
-    private static Document getDocument(File file) throws IOException, ParseException {
+    private static void findFiles(List<File> result, File dir) {
+        for (File file : dir.listFiles()) {
+            if (file.getName().endsWith(".properties")) {
+                result.add(file);
+            } else if (file.isDirectory()) {
+                findFiles(result, file);
+            }
+        }
+    }
+
+    private static Document getDocument(String rootDir, File file) throws IOException, ParseException {
         Properties props = new Properties();
         props.load(new FileInputStream(file));
         Document doc = new Document();
-        String fullpath = file.getCanonicalPath();
+        String category = file.getParent().substring(rootDir.length()).replace(File.separatorChar, '/');
         String isbn = props.getProperty("isbn");
         String title = props.getProperty("title");
         String author = props.getProperty("author");
         String url = props.getProperty("url");
         String subject = props.getProperty("subject");
         String pubmonth = props.getProperty("pubmonth");
-        System.out.println(title + "\n" + author + "\n" + subject + "\n" + pubmonth + "\n" + fullpath + "\n---------");
+        System.out.println(title + "\n" + author + "\n" + subject + "\n" + pubmonth + "\n" + category + "\n---------");
         doc.add(new StringField("isbn", isbn, Field.Store.YES));
-        doc.add(new StringField("category", fullpath, Field.Store.YES));
+        doc.add(new StringField("category", category, Field.Store.YES));
         doc.add(new TextField("title", title, Field.Store.YES));
         doc.add(new TextField("title2", title.toLowerCase(), Field.Store.YES));
         doc.add(new StringField("url", url, Field.Store.YES));
@@ -62,7 +76,7 @@ public class IndexerForLuceneAction {
         for (String a : authors) {
             doc.add(new StringField("author", a, Field.Store.YES));
         }
-        for (String text : new String[] {title, subject, author, fullpath}) {
+        for (String text : new String[] {title, subject, author, category}) {
             doc.add(new TextField("contents", text, Field.Store.NO));
         }
         return doc;
