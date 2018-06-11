@@ -1,11 +1,15 @@
 package com.kevin.chap4;
 
 import com.kevin.util.AnalyzerUtils;
+import junit.framework.TestCase;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.core.SimpleAnalyzer;
 import org.apache.lucene.analysis.core.StopAnalyzer;
 import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.junit.Test;
+
+import java.io.IOException;
 
 /**
  * @类名: AnalyzerDemo
@@ -15,12 +19,7 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
  * @版本：1.0
  * @描述：
  */
-public class AnalyzerDemo {
-
-    private static final String[] examples = {
-            "Thie quick brown fox jumped over the lazy dog",
-            "XY&Z Corporation - xyz@excample.com"
-    };
+public class AnalyzerDemo extends TestCase {
 
     private static final Analyzer[] analyzers = new Analyzer[] {
             new WhitespaceAnalyzer(),
@@ -29,17 +28,7 @@ public class AnalyzerDemo {
             new StandardAnalyzer()
     };
 
-    public static void main(String[] args) {
-        String[] strings = examples;
-        if (args.length > 0) {
-            strings = args;
-        }
-        for (String text : strings) {
-            analyze(text);
-        }
-    }
-
-    private static void analyze(String text) {
+    private static void analyze(String text) throws IOException {
         System.out.println("Analyzing \"" + text + "\"");
         for (Analyzer analyzer : analyzers) {
             String name = analyzer.getClass().getSimpleName();
@@ -48,5 +37,23 @@ public class AnalyzerDemo {
             AnalyzerUtils.displayTokens(analyzer, text);
             System.out.println("\n");
         }
+    }
+
+    @Test
+    public void testDisplayTokens() throws IOException {
+        String[] texts = {
+                "The quick brown fox jumped over the lazy dog",
+                "XY&Z Corporation - xyz@excample.com"
+        };
+        for (String text : texts) {
+            analyze(text);
+        }
+    }
+
+    @Test
+    public void testDisplayTokensWithFullDetails() throws IOException {
+//        String text = "The quick brown fox...";
+        String text = "I’ll email you at xyz@example.com";
+        AnalyzerUtils.displayTokensWithFullDetails(new StandardAnalyzer(), text);
     }
 }
