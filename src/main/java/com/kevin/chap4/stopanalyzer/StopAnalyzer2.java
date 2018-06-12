@@ -1,10 +1,11 @@
-package com.kevin.chap4;
+package com.kevin.chap4.stopanalyzer;
 
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.StopFilter;
+import com.kevin.util.AnalyzerUtils;
+import org.apache.lucene.analysis.*;
+import org.apache.lucene.analysis.core.LetterTokenizer;
 import org.apache.lucene.analysis.core.StopAnalyzer;
 
-import java.util.Set;
+import java.io.IOException;
 
 /**
  * @类名: StopAnalyzer2
@@ -16,7 +17,7 @@ import java.util.Set;
  */
 public class StopAnalyzer2 extends Analyzer {
 
-    private Set stopWords;
+    private CharArraySet stopWords;
 
     public StopAnalyzer2() {
         stopWords = StopAnalyzer.ENGLISH_STOP_WORDS_SET;
@@ -28,6 +29,11 @@ public class StopAnalyzer2 extends Analyzer {
 
     @Override
     protected TokenStreamComponents createComponents(String fieldName) {
-        return null;
+        final Tokenizer source = new LetterTokenizer();
+        return new TokenStreamComponents(source, new LowerCaseFilter(source));
+    }
+
+    public static void main(String[] args) throws IOException {
+        AnalyzerUtils.displayTokens(new StopAnalyzer2(), "The quick brown...");
     }
 }
