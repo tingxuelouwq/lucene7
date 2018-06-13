@@ -16,7 +16,7 @@ public class SynonymAnalyzerViewer {
 
     public static void main(String[] args) throws IOException {
         SynonymEngine engine = new TestSynonymEngine();
-        AnalyzerUtils.displayTokensWithFullDetails(new SynonymAnalyzer(engine),
+        AnalyzerUtils.displayTokensWithPosition(new SynonymAnalyzer(engine),
                 "The quick brown fox jumps over the lazy dog");
     }
 }
