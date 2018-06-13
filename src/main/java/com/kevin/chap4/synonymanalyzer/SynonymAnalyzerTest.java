@@ -59,8 +59,10 @@ public class SynonymAnalyzerTest extends TestCase {
         TokenStream tokenStream =
                 synonymAnalyzer.tokenStream("contents",
                         new StringReader("jumps"));
-        CharTermAttribute charTermAttribute = tokenStream.addAttribute(CharTermAttribute.class);
-        PositionIncrementAttribute positionIncrementAttribute = tokenStream.addAttribute(PositionIncrementAttribute.class);
+        CharTermAttribute charTermAttribute =
+                tokenStream.addAttribute(CharTermAttribute.class);
+        PositionIncrementAttribute positionIncrementAttribute =
+                tokenStream.addAttribute(PositionIncrementAttribute.class);
         tokenStream.reset();
         while (tokenStream.incrementToken()) {
             int position = positionIncrementAttribute.getPositionIncrement();
