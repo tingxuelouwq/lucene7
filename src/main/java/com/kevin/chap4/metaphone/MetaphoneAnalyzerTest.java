@@ -54,10 +54,10 @@ public class MetaphoneAnalyzerTest extends TestCase {
     public static void main(String[] args) throws IOException {
         MetaphoneReplacementAnalyzer analyzer =
                 new MetaphoneReplacementAnalyzer();
-        AnalyzerUtils.displayTokens(analyzer,
+        AnalyzerUtils.displayTokensWithPosition(analyzer,
                 "The quick brown fox jumped over the lazy dog");
         System.out.println("");
-        AnalyzerUtils.displayTokens(analyzer,
+        AnalyzerUtils.displayTokensWithPosition(analyzer,
                 "Tha quik brown phox jumpd ovvar tha lazi dag");
     }
 }

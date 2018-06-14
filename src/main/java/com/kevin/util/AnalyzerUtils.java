@@ -2,6 +2,11 @@ package com.kevin.util;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.cjk.CJKAnalyzer;
+import org.apache.lucene.analysis.core.SimpleAnalyzer;
+import org.apache.lucene.analysis.core.StopAnalyzer;
+import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
 import org.apache.lucene.analysis.tokenattributes.PositionIncrementAttribute;
@@ -50,7 +55,6 @@ public class AnalyzerUtils {
             int increment = positionIncrementAttribute.getPositionIncrement();
             if (increment > 0) {
                 position = position + increment;
-                System.out.println();
                 System.out.print(position + ": ");
             }
             System.out.println("[" +
@@ -81,5 +85,43 @@ public class AnalyzerUtils {
         System.out.println();
         tokenStream.end();
         tokenStream.close();
+    }
+
+    public static void main(String[] args) {
+        String str = "hello, i'm a boy, and i like play basketball" ;
+        String ztr = "你好，我是一个男孩，我喜欢打篮球" ;
+        Analyzer a = new StandardAnalyzer() ;      //标准分词器
+        Analyzer b = new SimpleAnalyzer() ;        //简单分词器
+        Analyzer c = new StopAnalyzer() ;          //停用词分词器
+        Analyzer d = new WhitespaceAnalyzer() ; //空格分词器
+        Analyzer analyzer = new CJKAnalyzer() ; //中文分词器
+        display(str,a) ;
+        System. out.println( "-----------------------------");
+        display(str,b) ;
+        System. out.println( "-----------------------------");
+        display(str,c) ;
+        System. out.println( "-----------------------------");
+        display(str,d) ;
+        System. out.println( "-----------------------------");
+        display(ztr,analyzer) ;
+    }
+
+    public static void display(String str, Analyzer a) {
+        TokenStream stream = null ;
+        try {
+            stream = a.tokenStream( "renyi", new StringReader(str)) ;
+            PositionIncrementAttribute pia = stream.addAttribute(PositionIncrementAttribute.class ) ;  //保存位置
+            OffsetAttribute oa = stream.addAttribute(OffsetAttribute.class ) ; //保存辞与词之间偏移量
+            CharTermAttribute cta = stream.addAttribute(CharTermAttribute.class ) ;//保存响应词汇
+            TypeAttribute ta = stream.addAttribute(TypeAttribute.class ) ; //保存类型
+            //在lucene 4 以上  要加入reset 和  end方法
+            stream.reset() ;
+            while (stream.incrementToken()) {
+                System. out.println(pia.getPositionIncrement() + ":[" + cta.toString() + "]:" + oa.startOffset() + "->" + oa.endOffset() + ":" + ta.type());
+            }
+            stream.end() ;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

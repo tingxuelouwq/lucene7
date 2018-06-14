@@ -1,8 +1,11 @@
 package com.kevin.chap4.metaphone;
 
+import org.apache.commons.codec.language.Metaphone;
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.Tokenizer;
 import org.apache.lucene.analysis.core.LetterTokenizer;
+import org.apache.lucene.analysis.phonetic.PhoneticFilter;
 
 /**
  * @类名: MetaphoneReplacementAnalyzer
@@ -16,6 +19,8 @@ public class MetaphoneReplacementAnalyzer extends Analyzer {
     @Override
     protected TokenStreamComponents createComponents(String fieldName) {
         final Tokenizer source = new LetterTokenizer();
-        return new TokenStreamComponents(source, new MetaphoneReplacementFilter(source));
+        TokenStream tok = new MetaphoneReplacementFilter(source);
+//        TokenStream tok = new PhoneticFilter(source, new Metaphone(), false);
+        return new TokenStreamComponents(source, tok);
     }
 }
