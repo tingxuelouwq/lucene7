@@ -2,17 +2,13 @@ package com.kevin.chap4.chineseanalyzer;
 
 import com.kevin.util.AnalyzerUtils;
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.cjk.CJKAnalyzer;
 import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
 import org.apache.lucene.analysis.core.SimpleAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
-import java.awt.*;
 import java.io.IOException;
-import java.io.StringReader;
 
 /**
  * @类名: ChineseDemo
@@ -30,7 +26,7 @@ public class ChineseDemo {
             new StandardAnalyzer(),
             new CJKAnalyzer(),
             new SmartChineseAnalyzer(),
-            new IKAnalyzer()
+            new IKAnalyzer(true)
     };
 
     public static void main(String[] args) throws IOException {
