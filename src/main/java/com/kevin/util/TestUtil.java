@@ -23,6 +23,6 @@ public class TestUtil {
     }
 
     public static Directory getBookIndexDirectory() throws IOException {
-        return FSDirectory.open(Paths.get("D:\\Lucene\\Index"));
+        return FSDirectory.open(Paths.get("D:\\Lucene\\index"));
     }
 }
