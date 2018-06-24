@@ -5,6 +5,7 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.util.BytesRef;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -65,11 +66,15 @@ public class IndexerForLuceneAction {
         System.out.println(title + "\n" + author + "\n" + subject + "\n" + pubmonth + "\n" + category + "\n---------");
         doc.add(new StringField("isbn", isbn, Field.Store.YES));
         doc.add(new StringField("category", category, Field.Store.YES));
+        doc.add(new SortedDocValuesField("category", new BytesRef(category)));
         doc.add(new TextField("title", title, Field.Store.YES));
         doc.add(new TextField("title2", title.toLowerCase(), Field.Store.YES));
         doc.add(new StringField("url", url, Field.Store.YES));
         doc.add(new TextField("subject", subject, Field.Store.YES));
-        doc.add(new IntPoint("pubmonth", Integer.valueOf(pubmonth)));
+        Integer intPubmonth = Integer.valueOf(pubmonth);
+        doc.add(new IntPoint("pubmonth", intPubmonth));
+        doc.add(new StoredField("pubmonth", intPubmonth));
+        doc.add(new NumericDocValuesField("pubmonth", intPubmonth));
         Date date = DateTools.stringToDate(pubmonth);
         doc.add(new IntPoint("pubmonthAsDay", (int) (date.getTime() / (1000 * 3600 *24))));
         String[] authors = author.split(",");

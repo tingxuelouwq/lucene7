@@ -12,7 +12,6 @@ import org.apache.lucene.search.*;
 import org.apache.lucene.store.Directory;
 
 import java.io.IOException;
-import java.io.PrintStream;
 import java.text.DecimalFormat;
 
 /**
@@ -34,14 +33,14 @@ public class SortingExample {
     public void displayResults(Query query, Sort sort) throws IOException {
         IndexReader reader = DirectoryReader.open(directory);
         IndexSearcher searcher = new IndexSearcher(reader);
-        TopDocs results = searcher.search(query, 20, sort);
+        TopDocs results = searcher.search(query, 20, sort, true, false);
         System.out.println("\nResults for: " +
                 query.toString() + " sorted by " + sort);
-        System.out.println(StringUtils.rightPad("Title", 30) +
+        System.out.println(StringUtils.center("Title", 30) +
                 StringUtils.rightPad("pubmonth", 10) +
-                StringUtils.center("id", 4) +
-                StringUtils.center("score", 15));
-        PrintStream out = new PrintStream(System.out, true, "UTF-8");
+                StringUtils.rightPad("id", 4) +
+                StringUtils.rightPad("score", 15) +
+                StringUtils.rightPad("category", 30));
         DecimalFormat scoreFormatter = new DecimalFormat("0.######");
         for (ScoreDoc sd : results.scoreDocs) {
             int docId = sd.doc;
@@ -50,9 +49,11 @@ public class SortingExample {
             System.out.println(StringUtils.rightPad(
                     StringUtils.abbreviate(doc.get("title"), 29), 30) +
                     StringUtils.rightPad(doc.get("pubmonth"), 10) +
-                    StringUtils.center("" + docId, 4) +
-                    StringUtils.leftPad(scoreFormatter.format(score), 12));
+                    StringUtils.rightPad("" + docId, 4) +
+                    StringUtils.rightPad(scoreFormatter.format(score), 15) +
+                    StringUtils.rightPad(doc.get("category"), 15));
         }
+        reader.close();
     }
 
     public static void main(String[] args) throws ParseException, IOException {
@@ -67,6 +68,15 @@ public class SortingExample {
         SortingExample example = new SortingExample(directory);
         example.displayResults(query, Sort.RELEVANCE);
         example.displayResults(query, Sort.INDEXORDER);
-
+        example.displayResults(query, new Sort(new SortField("category", SortField.Type.STRING)));
+        example.displayResults(query, new Sort(new SortField("pubmonth", SortField.Type.INT, true)));
+        example.displayResults(query, new Sort(new SortField("category", SortField.Type.STRING),
+                SortField.FIELD_SCORE,
+                new SortField("pubmonth", SortField.Type.INT, true)));
+        example.displayResults(query, new Sort(new SortField[]{
+                SortField.FIELD_SCORE,
+                new SortField("category", SortField.Type.STRING)
+        }));
+        directory.close();
     }
 }
