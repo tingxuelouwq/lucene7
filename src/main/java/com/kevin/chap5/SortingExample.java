@@ -36,7 +36,7 @@ public class SortingExample {
         TopDocs results = searcher.search(query, 20, sort, true, false);
         System.out.println("\nResults for: " +
                 query.toString() + " sorted by " + sort);
-        System.out.println(StringUtils.center("Title", 30) +
+        System.out.println(StringUtils.center("title", 30) +
                 StringUtils.rightPad("pubmonth", 10) +
                 StringUtils.rightPad("id", 4) +
                 StringUtils.rightPad("score", 15) +
