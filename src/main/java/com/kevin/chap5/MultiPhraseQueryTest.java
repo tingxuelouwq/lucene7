@@ -1,10 +1,14 @@
 package com.kevin.chap5;
 
+import com.kevin.chap4.synonymanalyzer.SynonymAnalyzer;
+import com.kevin.chap4.synonymanalyzer.SynonymEngine;
 import junit.framework.TestCase;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.*;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.*;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
@@ -64,13 +68,13 @@ public class MultiPhraseQueryTest extends TestCase {
         MultiPhraseQuery query = builder.build();
         System.out.println(query);
         TopDocs topDocs = searcher.search(query, 10);
-        System.out.println(topDocs.totalHits);
+        System.out.println(topDocs.totalHits);  // 1
 
         builder.setSlop(1);
         query = builder.build();
         System.out.println(query);
         topDocs = searcher.search(query, 10);
-        System.out.println(topDocs.totalHits);
+        System.out.println(topDocs.totalHits);  // 2
     }
 
     @Test
@@ -92,6 +96,25 @@ public class MultiPhraseQueryTest extends TestCase {
         BooleanQuery query = queryBuilder.build();
 
         TopDocs hits = searcher.search(query, 10);
-        System.out.println(hits.totalHits);
+        System.out.println(hits.totalHits); // 2
+    }
+
+    @Test
+    public void testQueryParser() throws ParseException {
+        SynonymEngine engine = new SynonymEngine() {
+            @Override
+            public String[] getSynonyms(String s) throws IOException {
+                if (s.equals("quick")) {
+                    return new String[]{"fast"};
+                } else {
+                    return null;
+                }
+            }
+        };
+
+        QueryParser parser = new QueryParser("field", new SynonymAnalyzer(engine));
+        Query query = parser.parse("\"quick fox\"");
+        System.out.println(query.toString());   // field:"(quick fast) fox"
+        System.out.println(query.getClass().getName()); // org.apache.lucene.search.MultiPhraseQuery
     }
 }
