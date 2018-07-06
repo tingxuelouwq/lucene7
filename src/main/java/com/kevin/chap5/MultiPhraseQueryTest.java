@@ -13,7 +13,6 @@ import org.apache.lucene.search.*;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
 import org.junit.Test;
-import sun.text.normalizer.NormalizerBase;
 
 import java.io.IOException;
 

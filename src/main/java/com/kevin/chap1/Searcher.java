@@ -25,8 +25,8 @@ import java.nio.file.Paths;
 public class Searcher {
 
     public static void main(String[] args) throws IOException, ParseException {
-        String indexDir = "D:\\Lucene\\Index";  // 索引存放目录
-        String q = "Apache";
+        String indexDir = "D:\\Lucene\\index";  // 索引存放目录
+        String q = "technology";
         search(indexDir, q);
     }
 
@@ -44,7 +44,7 @@ public class Searcher {
             " that matched query '" + q + "'");
         for (ScoreDoc scoreDoc : hits.scoreDocs) {
             Document doc = searcher.doc(scoreDoc.doc);
-            System.out.println(doc.get("fullpath"));
+            System.out.println(doc.get("title"));
         }
 
         reader.close();
