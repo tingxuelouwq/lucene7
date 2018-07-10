@@ -2,22 +2,21 @@ package com.kevin.chap5;
 
 import com.kevin.util.TestUtil;
 import junit.framework.TestCase;
+import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.core.SimpleAnalyzer;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.Term;
 import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.queryparser.xml.builders.DisjunctionMaxQueryBuilder;
+import org.apache.lucene.search.*;
 import org.apache.lucene.store.Directory;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @类名: MultiFieldQueryParserTest
@@ -56,6 +55,44 @@ public class MultiFieldQueryParserTest extends TestCase {
         parser.setDefaultOperator(QueryParser.Operator.AND);
         Query query = parser.parse("java lucene");
         // +((title:java)^5.0 (subject:java)^10.0) +((title:lucene)^5.0 (subject:lucene)^10.0)
+        System.out.println(query);
+        Directory dir = TestUtil.getBookIndexDirectory();
+        IndexReader reader = DirectoryReader.open(dir);
+        IndexSearcher searcher = new IndexSearcher(reader);
+        TopDocs hits = searcher.search(query, 10);
+        for (ScoreDoc scoreDoc : hits.scoreDocs) {
+            System.out.print(scoreDoc.score + ": ");
+            System.out.println(searcher.doc(scoreDoc.doc).get("title"));
+        }
+    }
+
+    @Test
+    public void testParser() throws ParseException, IOException {
+        String queryString = "java lucene";
+        String[] fields = {"title", "subject"};
+        BooleanClause.Occur[] flags = new BooleanClause.Occur[]{
+                BooleanClause.Occur.MUST, BooleanClause.Occur.MUST};
+        Analyzer analyzer = new SimpleAnalyzer();
+        Query query = MultiFieldQueryParser.parse(queryString, fields, flags, analyzer);
+        System.out.println(query);
+        Directory dir = TestUtil.getBookIndexDirectory();
+        IndexReader reader = DirectoryReader.open(dir);
+        IndexSearcher searcher = new IndexSearcher(reader);
+        TopDocs hits = searcher.search(query, 10);
+        for (ScoreDoc scoreDoc : hits.scoreDocs) {
+            System.out.print(scoreDoc.score + ": ");
+            System.out.println(searcher.doc(scoreDoc.doc).get("title"));
+        }
+    }
+
+    @Test
+    public void testDisjunctionMaxQuery() throws ParseException, IOException {
+        QueryParser parser = new QueryParser("title", new SimpleAnalyzer());
+        Query query1 = parser.parse("java lucene");
+        parser = new QueryParser("subject", new SimpleAnalyzer());
+        Query query2 = parser.parse("java lucene");
+        DisjunctionMaxQuery query = new DisjunctionMaxQuery(
+                Arrays.asList(query1, query2), 0.7f);
         System.out.println(query);
         Directory dir = TestUtil.getBookIndexDirectory();
         IndexReader reader = DirectoryReader.open(dir);
