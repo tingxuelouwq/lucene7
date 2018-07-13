@@ -56,7 +56,6 @@
             <artifactId>lucene-analyzers-smartcn</artifactId>
             <version>${lucene.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.kevin</groupId>
             <artifactId>IKAnalyzer</artifactId>
