@@ -1,6 +1,8 @@
 package com.kevin.chap1;
 
+import org.apache.lucene.analysis.tokenattributes.TypeAttribute;
 import org.apache.lucene.document.*;
+import org.apache.lucene.index.IndexOptions;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
@@ -67,10 +69,21 @@ public class IndexerForLuceneAction {
         doc.add(new StringField("isbn", isbn, Field.Store.YES));
         doc.add(new StringField("category", category, Field.Store.YES));
         doc.add(new SortedDocValuesField("category", new BytesRef(category)));
-        doc.add(new TextField("title", title, Field.Store.YES));
-        doc.add(new TextField("title2", title.toLowerCase(), Field.Store.YES));
+        FieldType fieldType = new FieldType();
+        fieldType.setStored(true);
+        fieldType.setTokenized(true);
+        fieldType.setIndexOptions(IndexOptions.DOCS);
+        fieldType.setStoreTermVectors(true);
+        fieldType.setStoreTermVectorPositions(true);
+        fieldType.setStoreTermVectorOffsets(true);
+        fieldType.freeze();
+        Field titleField = new Field("title", title, fieldType);
+        doc.add(titleField);
+        Field title2Field = new Field("title2", title.toLowerCase(), fieldType);
+        doc.add(title2Field);
         doc.add(new StringField("url", url, Field.Store.YES));
-        doc.add(new TextField("subject", subject, Field.Store.YES));
+        Field subjectField = new Field("subject", subject, fieldType);
+        doc.add(subjectField);
         Integer intPubmonth = Integer.valueOf(pubmonth);
         doc.add(new IntPoint("pubmonth", intPubmonth));
         doc.add(new StoredField("pubmonth", intPubmonth));
