@@ -65,7 +65,8 @@ public class BooksLikeThis {
         TermsEnum termsEnum = terms.iterator();
         BytesRef thisTerm;
         while ((thisTerm = termsEnum.next()) != null) {
-            TermQuery termQuery = new TermQuery(new Term("subject", thisTerm));
+            String termText = thisTerm.utf8ToString();
+            TermQuery termQuery = new TermQuery(new Term("subject", termText));
             subjectQueryBuilder.add(termQuery, BooleanClause.Occur.SHOULD);
         }
 
