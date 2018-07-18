@@ -66,11 +66,15 @@
             <artifactId>IKAnalyzer</artifactId>
             <version>${lucene.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.45</version>
         </dependency>
     </dependencies>
 </project>

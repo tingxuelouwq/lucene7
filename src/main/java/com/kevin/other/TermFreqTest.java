@@ -1,5 +1,6 @@
 package com.kevin.other;
 
+import junit.framework.TestCase;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
@@ -24,31 +25,25 @@ import java.io.StringReader;
  * @版本：1.0
  * @描述：
  */
-public class TermFreqTest {
+public class TermFreqTest extends TestCase {
 
-    public static void main(String[] args) throws IOException {
-        TermFreqTest termFreqTest = new TermFreqTest();
+    /**
+     * 获取分词后term的位置信息
+     * @throws IOException
+     */
+    public void testPosition() throws IOException {
         String word = "中新网3月12日电 据中国政府网消息，3月12日上午10时15分，" +
                 "李克强总理参加完政协闭幕会后来到国务院应急指挥中心，与前方中国搜救" +
                 "船长通话，了解马航MH370失联客机搜救最新进展情况。李克强要求各有关部门" +
                 "调集一切可能力量，加大搜救密度和力度，不放弃任何一线希望。";
-//        termFreqTest.position(word);
-        termFreqTest.getTFAndIDF(word);
-    }
-
-    /**
-     * 获取分词后term的位置信息
-     * @param word
-     * @throws IOException
-     */
-    public void position(String word) throws IOException {
         Analyzer analyzer = new IKAnalyzer();
         TokenStream tokenStream = analyzer.tokenStream("a", new StringReader(word));
         tokenStream.reset();
         CharTermAttribute term = tokenStream.addAttribute(CharTermAttribute.class); // term信息
         OffsetAttribute offset = tokenStream.addAttribute(OffsetAttribute.class);   // 位置信息
         while (tokenStream.incrementToken()) {
-            System.out.println(term + " " + offset.startOffset() + " " + offset.endOffset());
+            System.out.println("(" + term + "," + offset.startOffset() + "," +
+                    offset.endOffset() + ")");
         }
         tokenStream.end();
         tokenStream.close();
@@ -57,7 +52,14 @@ public class TermFreqTest {
     /**
      * 获取索引中的词频信息
      */
-    public void getTFAndIDF(String word) throws IOException {
+    public void testGetTFAndIDF() throws IOException {
+        String text1 = "教育技术作为教育活动的一个重要方面可谓源远流长，但那主要是它所涉及的教学媒体而言的";
+        String text2 = "教育技术学是一门以教育技术为研究对象、形成与发展以及类型的学科";
+
+        Directory dir = new RAMDirectory();
+        Analyzer analyzer = new IKAnalyzer();
+        IndexWriterConfig config = new IndexWriterConfig(analyzer);
+        IndexWriter writer = new IndexWriter(dir, config);
         FieldType type = new FieldType();
         type.setIndexOptions(IndexOptions.DOCS_AND_FREQS);
         type.setTokenized(true);
@@ -65,20 +67,18 @@ public class TermFreqTest {
         type.setStoreTermVectors(true);
         type.setStoreTermVectorPositions(true);
         type.setStoreTermVectorOffsets(true);
-        Document doc = new Document();
-        doc.add(new Field("name", word, type));
-
-        Directory dir = new RAMDirectory();
-        Analyzer analyzer = new IKAnalyzer();
-        IndexWriterConfig config = new IndexWriterConfig(analyzer);
-        IndexWriter writer = new IndexWriter(dir, config);
-        writer.addDocument(doc);
+        Document doc1 = new Document();
+        doc1.add(new Field("content", text1, type));
+        writer.addDocument(doc1);
+        Document doc2 = new Document();
+        doc2.add(new Field("content", text2, type));
+        writer.addDocument(doc2);
         writer.close();
 
         IndexReader reader = DirectoryReader.open(dir);
         for (int i = 0; i < reader.numDocs(); i++) {
             System.out.println("第" + (i + 1) + "篇文档: ");
-            Terms terms = reader.getTermVector(i, "name");
+            Terms terms = reader.getTermVector(i, "content");
             if (terms == null) {
                 continue;
             }

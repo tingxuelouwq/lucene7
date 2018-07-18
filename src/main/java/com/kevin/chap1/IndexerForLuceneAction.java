@@ -76,7 +76,7 @@ public class IndexerForLuceneAction {
         FieldType fieldType = new FieldType();
         fieldType.setStored(true);
         fieldType.setTokenized(true);
-        fieldType.setIndexOptions(IndexOptions.DOCS);
+        fieldType.setIndexOptions(IndexOptions.DOCS_AND_FREQS);
         fieldType.setStoreTermVectors(true);
         fieldType.setStoreTermVectorPositions(true);
         fieldType.setStoreTermVectorOffsets(true);
