@@ -1,15 +1,14 @@
-package com.kevin.chap6;
+package com.kevin.chap6.sort;
 
 import junit.framework.TestCase;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.StringField;
+import org.apache.lucene.document.*;
 import org.apache.lucene.index.*;
 import org.apache.lucene.search.*;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
+import org.apache.lucene.util.BytesRef;
 
 import java.io.IOException;
 
@@ -48,19 +47,34 @@ public class DistanceSortingTest extends TestCase {
     private void addPoint(IndexWriter writer, String name, String type, int x, int y)
             throws IOException {
         Document document = new Document();
+        String xy = x + "," + y;
         document.add(new StringField("name", name, Field.Store.YES));
         document.add(new StringField("type", type, Field.Store.YES));
-        document.add(new StringField("location", x + "," + y, Field.Store.YES));
+        document.add(new BinaryDocValuesField("location", new BytesRef(xy)));
+        document.add(new StoredField("location", xy));
         writer.addDocument(document);
     }
 
     public void testNearestRestaurantToHome() throws IOException {
         Sort sort = new Sort(new SortField("location",
                 new DistanceComparatorSource(0, 0)));
-        TopDocs hits = searcher.search(query, 10, sort);
+        TopDocs hits = searcher.search(query, 2, sort);
         ScoreDoc[] scoreDocs = hits.scoreDocs;
         for (ScoreDoc scoreDoc : scoreDocs) {
             System.out.println(searcher.doc(scoreDoc.doc).get("name"));
+        }
+    }
+
+    public void testNearestRestaurantToWork() throws IOException {
+        Sort sort = new Sort(new SortField("location",
+                new DistanceComparatorSource(10, 10)));
+        TopFieldDocs hits = searcher.search(query, 3, sort);
+        ScoreDoc[] scoreDocs = hits.scoreDocs;
+        for (ScoreDoc scoreDoc : scoreDocs) {
+            FieldDoc fieldDoc = (FieldDoc) scoreDoc;
+            System.out.println(fieldDoc.fields[0]);
+            Document document = searcher.doc(fieldDoc.doc);
+            System.out.println(document.get("name"));
         }
     }
 }

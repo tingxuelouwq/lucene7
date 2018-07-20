@@ -1,4 +1,4 @@
-package com.kevin.chap6;
+package com.kevin.chap6.sort;
 
 import org.apache.lucene.search.FieldComparator;
 import org.apache.lucene.search.FieldComparatorSource;
@@ -24,6 +24,8 @@ public class DistanceComparatorSource extends FieldComparatorSource {
     @Override
     public FieldComparator<?> newComparator(String fieldname, int numHits,
                                             int sortPos, boolean reversed) {
-        return null;
+        System.out.println("fieldname:" + fieldname + ",numHits:" + numHits +
+                ",sortPos:" + sortPos + ",reversed:" + reversed);
+        return new DistanceSourceLookupComparator(numHits, fieldname, x, y);
     }
 }
