@@ -71,8 +71,11 @@ public class IndexerForLuceneAction {
         doc.add(new StringField("category", category, Field.Store.YES));
         doc.add(new SortedDocValuesField("category", new BytesRef(category)));
         doc.add(new TextField("title", title, Field.Store.YES));
+        doc.add(new SortedDocValuesField("title", new BytesRef(title)));
         doc.add(new TextField("title2", title.toLowerCase(), Field.Store.YES));
+        doc.add(new SortedDocValuesField("title2", new BytesRef(title)));
         doc.add(new StringField("url", url, Field.Store.YES));
+        doc.add(new SortedDocValuesField("url", new BytesRef(url)));
         FieldType fieldType = new FieldType();
         fieldType.setStored(true);
         fieldType.setTokenized(true);

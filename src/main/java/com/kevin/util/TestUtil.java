@@ -1,7 +1,10 @@
 package com.kevin.util;
 
+import org.apache.lucene.document.Document;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
@@ -24,5 +27,17 @@ public class TestUtil {
 
     public static Directory getBookIndexDirectory() throws IOException {
         return FSDirectory.open(Paths.get("D:\\Lucene\\index"));
+    }
+
+    public static void dumpHits(IndexSearcher searcher, TopDocs hits)
+            throws IOException {
+        if (hits.totalHits == 0) {
+            System.out.println("No hits");
+        }
+
+        for (ScoreDoc match : hits.scoreDocs) {
+            Document doc = searcher.doc(match.doc);
+            System.out.println(match.score + ":" + doc.get("title"));
+        }
     }
 }
