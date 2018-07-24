@@ -41,7 +41,7 @@ public class DistanceSourceLookupComparator extends SimpleFieldComparator<Float>
 
     /**
      * 第一步：Lucene首先调用该方法进行数据初始化，通过currentReaderValues来迭代数据
-     * @param context
+     * @param context 当前reader的上下文环境
      * @throws IOException
      */
     @Override
