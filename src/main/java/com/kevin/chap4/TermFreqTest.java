@@ -1,4 +1,4 @@
-package com.kevin.other;
+package com.kevin.chap4;
 
 import junit.framework.TestCase;
 import org.apache.lucene.analysis.Analyzer;

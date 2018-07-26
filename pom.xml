@@ -23,14 +23,19 @@
     <properties>
         <lucene.version>7.3.1</lucene.version>
         <junit.version>4.12</junit.version>
+        <tika.version>1.18</tika.version>
     </properties>
 
     <dependencies>
+        <!-- Junit Begin -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
         </dependency>
+        <!-- Junit End -->
+
+        <!-- Lucene Begin -->
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-core</artifactId>
@@ -66,20 +71,51 @@
             <artifactId>lucene-grouping</artifactId>
             <version>${lucene.version}</version>
         </dependency>
+        <!-- Lucene End -->
+
+        <!-- IKAnalyzer Begin -->
         <dependency>
             <groupId>com.kevin</groupId>
             <artifactId>IKAnalyzer</artifactId>
             <version>${lucene.version}</version>
         </dependency>
+        <!-- IKAnalyzer End -->
+
+        <!-- Common Begin -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.7</version>
         </dependency>
+        <!-- Common End -->
+
+        <!-- FastJson Begin -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.45</version>
         </dependency>
+        <!-- FastJson End -->
+
+        <!-- Tika Begin -->
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-core</artifactId>
+            <version>${tika.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-parsers</artifactId>
+            <version>${tika.version}</version>
+        </dependency>
+        <!-- Tika End -->
+
+        <!-- Apache Common Digester Begin -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-digester3</artifactId>
+            <version>3.2</version>
+        </dependency>
+        <!-- Apache Common Digester End -->
     </dependencies>
 </project>
