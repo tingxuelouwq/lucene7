@@ -55,11 +55,11 @@ public class IndexerForLuceneAction {
         writer = new IndexWriter(dir, config);
     }
 
-    protected void close() throws IOException {
+    private void close() throws IOException {
         writer.close();
     }
 
-    protected int index(String dataDir) throws Exception {
+    private int index(String dataDir) throws Exception {
         List<File> files = new ArrayList<>();
         findFiles(files, new File(dataDir));
         for (File file : files) {
@@ -68,9 +68,9 @@ public class IndexerForLuceneAction {
         return writer.numDocs();
     }
 
-    protected void findFiles(List<File> files, File dataDir) {
+    private void findFiles(List<File> files, File dataDir) {
         for (File file : dataDir.listFiles()) {
-            if (file.isFile()) {
+            if (file.getName().toLowerCase().endsWith(".properties")) {
                 files.add(file);
             } else if (file.isDirectory()) {
                 findFiles(files, file);
@@ -78,12 +78,12 @@ public class IndexerForLuceneAction {
         }
     }
 
-    protected void indexFile(String dataDir, File file) throws Exception {
+    private void indexFile(String dataDir, File file) throws Exception {
         Document doc = getDocument(dataDir, file);
         writer.addDocument(doc);
     }
 
-    protected Document getDocument(String rootDir, File file) throws Exception {
+    private Document getDocument(String rootDir, File file) throws Exception {
         Properties props = new Properties();
         props.load(new FileInputStream(file));
         Document doc = new Document();
