@@ -32,7 +32,7 @@ public class BasicSearchingTest extends TestCase {
         Term term = new Term("contents", "apache");
         Query query = new TermQuery(term);
         TopDocs docs = searcher.search(query, 10);
-        assertEquals("Apache", 3, docs.totalHits);
+        assertEquals("Apache", 1, docs.totalHits);
         reader.close();
         dir.close();
     }
@@ -47,7 +47,7 @@ public class BasicSearchingTest extends TestCase {
         TopDocs docs = searcher.search(query, 10);
         ScoreDoc[] scoreDocs = docs.scoreDocs;
         for (ScoreDoc scoreDoc : scoreDocs) {
-            System.out.println(searcher.doc(scoreDoc.doc).get("fullpath"));
+            System.out.println(searcher.doc(scoreDoc.doc).get("title"));
         }
         reader.close();
         dir.close();

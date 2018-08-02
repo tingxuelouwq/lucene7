@@ -3,6 +3,7 @@ package com.kevin.chap4;
 import junit.framework.TestCase;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
 import org.apache.lucene.document.Document;
@@ -44,6 +45,21 @@ public class TermFreqTest extends TestCase {
         while (tokenStream.incrementToken()) {
             System.out.println("(" + term + "," + offset.startOffset() + "," +
                     offset.endOffset() + ")");
+        }
+        tokenStream.end();
+        tokenStream.close();
+    }
+
+    public void testStem() throws IOException {
+        String word = "happiness rotting rolling";
+        Analyzer analyzer = new EnglishAnalyzer();
+        TokenStream tokenStream = analyzer.tokenStream("stem", new StringReader(word));
+        tokenStream.reset();
+        CharTermAttribute termAttr = tokenStream.addAttribute(CharTermAttribute.class);
+        OffsetAttribute offsetAttr = tokenStream.addAttribute(OffsetAttribute.class);
+        while (tokenStream.incrementToken()) {
+            System.out.println("(" + termAttr + "," + offsetAttr.startOffset() + "," +
+                    offsetAttr.endOffset() + ")");
         }
         tokenStream.end();
         tokenStream.close();
