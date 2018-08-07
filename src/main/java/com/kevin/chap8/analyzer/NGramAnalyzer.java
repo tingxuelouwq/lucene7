@@ -1,4 +1,4 @@
-package com.kevin.chap8;
+package com.kevin.chap8.analyzer;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;

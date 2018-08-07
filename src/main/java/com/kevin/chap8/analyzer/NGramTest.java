@@ -1,4 +1,4 @@
-package com.kevin.chap8;
+package com.kevin.chap8.analyzer;
 
 import com.kevin.util.AnalyzerUtils;
 import junit.framework.TestCase;
