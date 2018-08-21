@@ -35,7 +35,6 @@ public class GroupTest {
         Sort groupSort = Sort.RELEVANCE;
         groupBy(searcher, query, groupSort);
         groupSearch(searcher);
-
     }
 
     private static void groupSearch(IndexSearcher searcher) {
@@ -93,10 +92,9 @@ public class GroupTest {
         }
 
         Collector secondPassGroupingCollector = null;
-        TopGroupsCollector c2 = new TopGroupsCollector(new TermGroupSelector(groupField), topGroups, groupSort, docSort, docsPerGroup, getScores, getMaxScores, fillFields);
+        TopGroupsCollector<BytesRef> c2 = new TopGroupsCollector<>(new TermGroupSelector(groupField), topGroups, groupSort, docSort, docsPerGroup, getScores, getMaxScores, fillFields);
         /**
-         * 如果计算总的分组数量，则需要把SecondPassGroupingCollector包装秤
-         * T
+         * 如果计算总的分组数量，则需要把SecondPassGroupingCollector包装AllGroupsCollector
          */
         AllGroupsCollector c3 = null;
         if (requiredTotalGroupCount) {
@@ -146,7 +144,7 @@ public class GroupTest {
                 docIdx++;
                 System.out.println("group[" + groupIdx + "][" + docIdx + "]{docId:score}: " + scoreDoc.doc + "/" + scoreDoc.score);
                 Document doc = searcher.doc(scoreDoc.doc);
-                System.out.println("group[" + groupIdx + "][" + docIdx + "]{docId:author}: " + doc.get("id") + ":" + doc.get("content"));
+                System.out.println("group[" + groupIdx + "][" + docIdx + "]{docId:content}: " + doc.get("id") + ":" + doc.get("content"));
                 System.out.println("**********************");
             }
         }
