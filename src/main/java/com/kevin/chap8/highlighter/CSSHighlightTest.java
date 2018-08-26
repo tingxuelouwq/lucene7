@@ -8,7 +8,6 @@ import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.highlight.*;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
 

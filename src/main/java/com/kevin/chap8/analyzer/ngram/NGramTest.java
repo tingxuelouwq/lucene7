@@ -1,4 +1,4 @@
-package com.kevin.chap8.analyzer;
+package com.kevin.chap8.analyzer.ngram;
 
 import com.kevin.util.AnalyzerUtils;
 import junit.framework.TestCase;

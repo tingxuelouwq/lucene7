@@ -7,14 +7,11 @@ import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.BytesRef;
-import org.apache.tika.exception.TikaException;
-import org.xml.sax.SAXException;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -95,15 +92,7 @@ public class IndexerForLuceneAction {
         String subject = props.getProperty("subject");
         String pubmonth = props.getProperty("pubmonth");
         System.out.println(title + "\n" + author + "\n" + subject + "\n" + pubmonth + "\n" + category + "\n---------");
-        doc.add(new StringField("isbn", isbn, Field.Store.YES));
-        doc.add(new StringField("category", category, Field.Store.YES));
-        doc.add(new SortedDocValuesField("category", new BytesRef(category)));
-        doc.add(new TextField("title", title, Field.Store.YES));
-        doc.add(new SortedDocValuesField("title", new BytesRef(title)));
-        doc.add(new TextField("title2", title.toLowerCase(), Field.Store.YES));
-        doc.add(new SortedDocValuesField("title2", new BytesRef(title)));
-        doc.add(new StringField("url", url, Field.Store.YES));
-        doc.add(new SortedDocValuesField("url", new BytesRef(url)));
+
         FieldType fieldType = new FieldType();
         fieldType.setStored(true);
         fieldType.setTokenized(true);
@@ -112,6 +101,18 @@ public class IndexerForLuceneAction {
         fieldType.setStoreTermVectorPositions(true);
         fieldType.setStoreTermVectorOffsets(true);
         fieldType.freeze();
+
+        doc.add(new StringField("isbn", isbn, Field.Store.YES));
+        doc.add(new StringField("category", category, Field.Store.YES));
+        doc.add(new SortedDocValuesField("category", new BytesRef(category)));
+//        Field titleField = new Field("title", title, fieldType);
+//        doc.add(titleField);
+        doc.add(new TextField("title", title, Field.Store.YES));
+        doc.add(new SortedDocValuesField("title", new BytesRef(title)));
+        doc.add(new TextField("title2", title.toLowerCase(), Field.Store.YES));
+        doc.add(new SortedDocValuesField("title2", new BytesRef(title)));
+        doc.add(new StringField("url", url, Field.Store.YES));
+        doc.add(new SortedDocValuesField("url", new BytesRef(url)));
         Field subjectField = new Field("subject", subject, fieldType);
         doc.add(subjectField);
         Integer intPubmonth = Integer.valueOf(pubmonth);
