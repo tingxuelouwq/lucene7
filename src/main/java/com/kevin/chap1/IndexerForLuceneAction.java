@@ -105,9 +105,9 @@ public class IndexerForLuceneAction {
         doc.add(new StringField("isbn", isbn, Field.Store.YES));
         doc.add(new StringField("category", category, Field.Store.YES));
         doc.add(new SortedDocValuesField("category", new BytesRef(category)));
-//        Field titleField = new Field("title", title, fieldType);
-//        doc.add(titleField);
-        doc.add(new TextField("title", title, Field.Store.YES));
+        Field titleField = new Field("title", title, fieldType);
+        doc.add(titleField);
+//        doc.add(new TextField("title", title, Field.Store.YES));
         doc.add(new SortedDocValuesField("title", new BytesRef(title)));
         doc.add(new TextField("title2", title.toLowerCase(), Field.Store.YES));
         doc.add(new SortedDocValuesField("title2", new BytesRef(title)));
