@@ -11,12 +11,14 @@ import org.apache.lucene.document.Field;
 import org.apache.lucene.document.FieldType;
 import org.apache.lucene.index.*;
 import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.BytesRef;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.nio.file.Paths;
 
 /**
  * @类名: TermFreqTest
@@ -72,9 +74,10 @@ public class TermFreqTest extends TestCase {
         String text1 = "教育技术作为教育活动的一个重要方面可谓源远流长，但那主要是它所涉及的教学媒体而言的";
         String text2 = "教育技术学是一门以教育技术为研究对象、形成与发展以及类型的学科";
 
-        Directory dir = new RAMDirectory();
+        Directory dir = FSDirectory.open(Paths.get("D:/lucene/index"));
         Analyzer analyzer = new IKAnalyzer();
         IndexWriterConfig config = new IndexWriterConfig(analyzer);
+        config.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
         IndexWriter writer = new IndexWriter(dir, config);
         FieldType type = new FieldType();
         type.setIndexOptions(IndexOptions.DOCS_AND_FREQS);
@@ -102,9 +105,9 @@ public class TermFreqTest extends TestCase {
             BytesRef thisTerm = null;
             while ((thisTerm = termsEnum.next()) != null) {
                 String termText = thisTerm.utf8ToString();  // term
-                int docFreq = termsEnum.docFreq();          // idf
-                long termFreq = termsEnum.totalTermFreq();  // tf
-                System.out.println("term: " + termText + ", idf: " + docFreq + ", tf: " + termFreq);
+                int docFreq = termsEnum.docFreq();          // tf
+                long termFreq = termsEnum.totalTermFreq();  // idf
+                System.out.println("term: " + termText + ", tf: " + termFreq + ", idf: " + docFreq);
             }
         }
         reader.close();
