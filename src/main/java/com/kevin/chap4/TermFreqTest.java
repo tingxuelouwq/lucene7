@@ -105,8 +105,8 @@ public class TermFreqTest extends TestCase {
             BytesRef thisTerm = null;
             while ((thisTerm = termsEnum.next()) != null) {
                 String termText = thisTerm.utf8ToString();  // term
-                int docFreq = termsEnum.docFreq();          // tf
-                long termFreq = termsEnum.totalTermFreq();  // idf
+                int docFreq = termsEnum.docFreq();          // idf
+                long termFreq = termsEnum.totalTermFreq();  // tf
                 System.out.println("term: " + termText + ", tf: " + termFreq + ", idf: " + docFreq);
             }
         }
