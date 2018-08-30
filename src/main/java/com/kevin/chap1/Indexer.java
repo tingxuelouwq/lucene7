@@ -45,6 +45,7 @@ public class Indexer {
     public Indexer(String indexDir) throws IOException {
         Directory dir = FSDirectory.open(Paths.get(indexDir));
         IndexWriterConfig config = new IndexWriterConfig(new StandardAnalyzer());
+        config.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
         writer = new IndexWriter(dir, config);
     }
 

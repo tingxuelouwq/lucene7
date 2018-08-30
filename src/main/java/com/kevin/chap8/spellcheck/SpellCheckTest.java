@@ -37,7 +37,7 @@ public class SpellCheckTest extends TestCase {
     private SpellChecker spellChecker;
 
     public void testSpellCheck() throws IOException {
-        String word = "屌丝男士";
+        String word = "明朝";
         search(word, 5);
     }
 
