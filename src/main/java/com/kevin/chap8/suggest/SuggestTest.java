@@ -48,16 +48,16 @@ public class SuggestTest {
         lookup(suggester, "Electric guit", "US");
     }
 
-    private static void lookup(AnalyzingInfixSuggester suggester, String name, String region) throws IOException, ClassNotFoundException {
+    private static void lookup(AnalyzingInfixSuggester suggester, String name, String region)
+            throws IOException, ClassNotFoundException {
         Set<BytesRef> contexts = new HashSet<>();
         contexts.add(new BytesRef(region.getBytes("UTF8")));
-        /**
-         * 先以contexts为过滤条件进行过滤，再以name为关键字进行筛选，根据weight值排序返回前2条
-         */
-        List<Lookup.LookupResult> results = suggester.lookup(name, contexts, 2, true, false);
+        List<Lookup.LookupResult> results = suggester.lookup(name, contexts, 2,
+                true, true);
         System.out.println("-- \"" + name + "\" (" + region + "):");
         for (Lookup.LookupResult result : results) {
             System.out.println(result.key);
+            System.out.println(result.highlightKey.toString());
             // 从payload中反序列化出Product对象
             BytesRef bytesRef = result.payload;
             ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(bytesRef.bytes));

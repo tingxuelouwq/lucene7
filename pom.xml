@@ -120,6 +120,14 @@
             <version>3.2</version>
         </dependency>
         <!-- Apache Common Digester End -->
+
+        <!-- Pinyin4j Begin -->
+        <dependency>
+            <groupId>com.belerweb</groupId>
+            <artifactId>pinyin4j</artifactId>
+            <version>2.5.1</version>
+        </dependency>
+        <!-- Pinyin4j End -->
     </dependencies>
 
     <build>
