@@ -1,11 +1,14 @@
 package com.kevin.chap8.pinyin;
 
+import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
 import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 import org.apache.lucene.analysis.TokenFilter;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
+import org.apache.lucene.analysis.tokenattributes.PositionIncrementAttribute;
 
 import java.io.IOException;
 
@@ -19,46 +22,74 @@ import java.io.IOException;
  */
 public class PinyinTokenFilter extends TokenFilter {
 
-    private final CharTermAttribute termAtt;
+    private CharTermAttribute termAtt;
+    private PositionIncrementAttribute posIncrAtt;
+    private int skippedPositions;
+    private String term;
     /** 汉语拼音输出转换器，基于Pinyin4j **/
     private HanyuPinyinOutputFormat outputFormat;
-    /** 对于多音字会有多个拼音，fistChar表示只取第一个，否则会取多个拼音 **/
-    private boolean firstChar;
     /** Term最小长度，小于这个长度的不进行拼音转换 **/
     private int minTermLength;
-    private char[] curTermBuffer;
-    private int curTermLength;
-    private boolean ngramChinese;
+
+    private static final int DEFAULT_MIN_TERM_LENGTH = 2;
 
     public PinyinTokenFilter(TokenStream input) {
-        this(input, PinyinConstant.DEFAULT_FIRST_CHAR, PinyinConstant.DEFAULT_MIN_TERM_LENGTH, PinyinConstant.DEFAULT_NGRAM_CHINESE);
+        this(input, DEFAULT_MIN_TERM_LENGTH);
     }
 
-    public PinyinTokenFilter(TokenStream input, boolean firstChar) {
-        this(input, firstChar, PinyinConstant.DEFAULT_MIN_TERM_LENGTH, PinyinConstant.DEFAULT_NGRAM_CHINESE);
-    }
-
-    public PinyinTokenFilter(TokenStream input, boolean firstChar, int minTermLength) {
-        this(input, firstChar, minTermLength, PinyinConstant.DEFAULT_NGRAM_CHINESE);
-    }
-
-    public PinyinTokenFilter(TokenStream input, boolean firstChar,
-                             int minTermLength, boolean ngramChinese) {
+    public PinyinTokenFilter(TokenStream input, int minTermLength) {
         super(input);
         this.termAtt = addAttribute(CharTermAttribute.class);
+        this.posIncrAtt = addAttribute(PositionIncrementAttribute.class);
         this.outputFormat = new HanyuPinyinOutputFormat();
         this.outputFormat.setCaseType(HanyuPinyinCaseType.LOWERCASE);
         this.outputFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-        this.firstChar = firstChar;
         this.minTermLength = minTermLength;
-        if (this.minTermLength < PinyinConstant.DEFAULT_MIN_TERM_LENGTH) {
-            this.minTermLength = PinyinConstant.DEFAULT_MIN_TERM_LENGTH;
+        if (this.minTermLength < DEFAULT_MIN_TERM_LENGTH) {
+            this.minTermLength = DEFAULT_MIN_TERM_LENGTH;
         }
-        this.ngramChinese = ngramChinese;
     }
 
     @Override
     public boolean incrementToken() throws IOException {
+        skippedPositions = 0;
+        while (input.incrementToken()) {
+            term = termAtt.toString();
+            if (containsChinese(term) && term.length() >= minTermLength) {
+                try {
+                    String pinyinTerm = getPinyinString(term);
+                    termAtt.copyBuffer(pinyinTerm.toCharArray(), 0, pinyinTerm.length());
+                } catch (BadHanyuPinyinOutputFormatCombination badHanyuPinyinOutputFormatCombination) {
+                    badHanyuPinyinOutputFormatCombination.printStackTrace();
+                }
+                if (skippedPositions != 0) {
+                    posIncrAtt.setPositionIncrement(posIncrAtt.getPositionIncrement() + skippedPositions);
+                }
+                return true;
+            }
+            skippedPositions += posIncrAtt.getPositionIncrement();
+        }
         return false;
+    }
+
+    private boolean containsChinese(String str) {
+        if (str == null || "".equals(str.trim())) {
+            return false;
+        }
+        for (int i = 0; i < str.length(); i++) {
+            if (isChinese(str.charAt(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isChinese(char ch) {
+        int intCh = ch;
+        return (intCh >= 19968 && intCh <= 40869);
+    }
+
+    private String getPinyinString(String str) throws BadHanyuPinyinOutputFormatCombination {
+        return PinyinHelper.toHanYuPinyinString(str, outputFormat, "", true);
     }
 }

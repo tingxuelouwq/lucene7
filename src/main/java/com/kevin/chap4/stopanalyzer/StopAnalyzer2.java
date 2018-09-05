@@ -4,6 +4,8 @@ import com.kevin.util.AnalyzerUtils;
 import org.apache.lucene.analysis.*;
 import org.apache.lucene.analysis.core.LetterTokenizer;
 import org.apache.lucene.analysis.core.StopAnalyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.standard.StandardFilter;
 
 import java.io.IOException;
 
@@ -30,10 +32,12 @@ public class StopAnalyzer2 extends Analyzer {
     @Override
     protected TokenStreamComponents createComponents(String fieldName) {
         final Tokenizer source = new LetterTokenizer();
-        return new TokenStreamComponents(source, new LowerCaseFilter(source));
+        TokenStream tok = new LowerCaseFilter(source);
+        tok = new StopFilter(tok, StandardAnalyzer.ENGLISH_STOP_WORDS_SET);
+        return new TokenStreamComponents(source, tok);
     }
 
     public static void main(String[] args) throws IOException {
-        AnalyzerUtils.displayTokens(new StopAnalyzer2(), "The quick brown...");
+        AnalyzerUtils.displayTokensWithFullDetails(new StopAnalyzer2(), "The quick brown...");
     }
 }

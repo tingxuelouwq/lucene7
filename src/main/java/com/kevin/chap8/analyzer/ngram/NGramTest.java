@@ -16,7 +16,7 @@ import java.io.IOException;
 public class NGramTest extends TestCase {
 
     public void testNGramTokenFilter24() throws IOException {
-        AnalyzerUtils.displayTokensWithPosition(new NGramAnalyzer(), "lettuce");
+        AnalyzerUtils.displayTokensWithFullDetails(new NGramAnalyzer(), "lettuce");
     }
 
     public void testFrontEdgeNGramTokenFilter14() throws IOException {
