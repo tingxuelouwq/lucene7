@@ -18,7 +18,7 @@ import java.io.IOException;
  * 作者：kevin[wangqi2017@xinhua.org]<br/>
  * 时间：2018/9/4 16:35<br/>
  * 版本：1.0<br/>
- * 描述：拼音过滤器，负责将汉字转换为拼音<br/>
+ * 描述：拼音过滤器，负责将汉字转换为拼音，参考<code>StopFilter</code>的实现<br/>
  */
 public class PinyinTokenFilter extends TokenFilter {
 

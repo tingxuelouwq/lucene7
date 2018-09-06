@@ -4,6 +4,7 @@ import org.apache.lucene.analysis.TokenFilter;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
+import org.apache.lucene.analysis.tokenattributes.PositionIncrementAttribute;
 
 import java.io.IOException;
 
@@ -18,9 +19,22 @@ import java.io.IOException;
 public class PinyinNGramTokenFilter extends TokenFilter {
 
     private CharTermAttribute termAtt;
-    private OffsetAttribute offsetAtt;
+    private PositionIncrementAttribute posIncrAtt;
+    /** gram最小值 **/
     private int minGram;
+    /** gram最大值 **/
     private int maxGram;
+    /** 缓存每一个token的数组 **/
+    private char[] curTermBuffer;
+    /** 缓存数组的长度 **/
+    private int curTermLength;
+    /** 当前gram大小 **/
+    private int curGramSize;
+    /** 起始位置 **/
+    private int curPos;
+    /** 位置增量 **/
+    private int curPosInc;
+    private State state;
 
     private static final int DEFAULT_MIN_GRAM = 2;
     private static final int DEFAULT_MAX_GRAM = 5;
@@ -32,7 +46,7 @@ public class PinyinNGramTokenFilter extends TokenFilter {
     public PinyinNGramTokenFilter(TokenStream input, int minGram, int maxGram) {
         super(input);
         termAtt = addAttribute(CharTermAttribute.class);
-        offsetAtt = addAttribute(OffsetAttribute.class);
+        posIncrAtt = addAttribute(PositionIncrementAttribute.class);
         if (minGram < 1) {
             throw new IllegalArgumentException("minGram must be greater than zero");
         }
@@ -45,26 +59,41 @@ public class PinyinNGramTokenFilter extends TokenFilter {
 
     @Override
     public boolean incrementToken() throws IOException {
-        while (input.incrementToken()) {
-            return true;
-        }
-        return false;
-    }
+        while (true) {
+            if (curTermBuffer == null) {
+                if (!input.incrementToken()) {
+                    return false;
+                } else {
+                    curTermBuffer = termAtt.buffer().clone();
+                    curTermLength = termAtt.length();
+                    curGramSize = minGram;
+                    curPos = 0;
+                    curPosInc = posIncrAtt.getPositionIncrement();
+                    state = captureState();
+                }
+            }
 
-    private boolean containsChinese(String str) {
-        if (str == null || "".equals(str.trim())) {
-            return false;
-        }
-        for (int i = 0; i < str.length(); i++) {
-            if (isChinese(str.charAt(i))) {
+            if (curGramSize > maxGram || (curPos + curGramSize) > curTermLength) {
+                curPosInc++;
+                curGramSize = minGram;
+            }
+            if ((curPos + curGramSize) <= curTermLength) {
+                restoreState(state);
+                int start = curPos;
+                int end = curPos + curGramSize;
+                termAtt.copyBuffer(curTermBuffer, start, (end - start));
+                posIncrAtt.setPositionIncrement(curPosInc);
+                curPosInc = 0;
+                curGramSize++;
                 return true;
             }
+            curTermBuffer = null;
         }
-        return false;
     }
 
-    private boolean isChinese(char ch) {
-        int intCh = ch;
-        return (intCh >= 19968 && intCh <= 40869);
+    @Override
+    public void reset() throws IOException {
+        super.reset();
+        curTermBuffer = null;
     }
 }

@@ -5,6 +5,7 @@ import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.Tokenizer;
 import org.apache.lucene.analysis.core.KeywordTokenizer;
 import org.apache.lucene.analysis.ngram.NGramTokenFilter;
+import org.apache.lucene.analysis.standard.StandardTokenizer;
 
 /**
  * @类名: NGramAnalyzer
@@ -17,7 +18,7 @@ import org.apache.lucene.analysis.ngram.NGramTokenFilter;
 public class NGramAnalyzer extends Analyzer {
     @Override
     protected TokenStreamComponents createComponents(String fieldName) {
-        Tokenizer source = new KeywordTokenizer();
+        Tokenizer source = new StandardTokenizer();
         TokenStream target = new NGramTokenFilter(source, 2, 4);
         return new TokenStreamComponents(source, target);
     }
