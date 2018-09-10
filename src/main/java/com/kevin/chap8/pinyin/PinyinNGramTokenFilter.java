@@ -3,7 +3,6 @@ package com.kevin.chap8.pinyin;
 import org.apache.lucene.analysis.TokenFilter;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
-import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
 import org.apache.lucene.analysis.tokenattributes.PositionIncrementAttribute;
 
 import java.io.IOException;
@@ -14,7 +13,7 @@ import java.io.IOException;
  * 作者：kevin[wangqi2017@xinhua.org]<br/>
  * 时间：2018/9/5 10:34<br/>
  * 版本：1.0<br/>
- * 描述：<br/>
+ * 描述：对转换后的拼音进行ngram处理的TokenFilter，参考<code>NGramTokenFitler和EdgeNGramTokenFilter</code>的实现<br/>
  */
 public class PinyinNGramTokenFilter extends TokenFilter {
 
@@ -30,14 +29,12 @@ public class PinyinNGramTokenFilter extends TokenFilter {
     private int curTermLength;
     /** 当前gram大小 **/
     private int curGramSize;
-    /** 起始位置 **/
-    private int curPos;
     /** 位置增量 **/
     private int curPosInc;
     private State state;
 
     private static final int DEFAULT_MIN_GRAM = 2;
-    private static final int DEFAULT_MAX_GRAM = 5;
+    private static final int DEFAULT_MAX_GRAM = 20;
 
     public PinyinNGramTokenFilter(TokenStream input) {
         this(input, DEFAULT_MIN_GRAM, DEFAULT_MAX_GRAM);
@@ -67,21 +64,14 @@ public class PinyinNGramTokenFilter extends TokenFilter {
                     curTermBuffer = termAtt.buffer().clone();
                     curTermLength = termAtt.length();
                     curGramSize = minGram;
-                    curPos = 0;
                     curPosInc = posIncrAtt.getPositionIncrement();
                     state = captureState();
                 }
             }
 
-            if (curGramSize > maxGram || (curPos + curGramSize) > curTermLength) {
-                curPosInc++;
-                curGramSize = minGram;
-            }
-            if ((curPos + curGramSize) <= curTermLength) {
+            if (curGramSize <= maxGram && curGramSize <= curTermLength) {
                 restoreState(state);
-                int start = curPos;
-                int end = curPos + curGramSize;
-                termAtt.copyBuffer(curTermBuffer, start, (end - start));
+                termAtt.copyBuffer(curTermBuffer, 0, curGramSize);
                 posIncrAtt.setPositionIncrement(curPosInc);
                 curPosInc = 0;
                 curGramSize++;

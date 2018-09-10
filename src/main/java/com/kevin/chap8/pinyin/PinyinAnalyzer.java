@@ -1,9 +1,7 @@
 package com.kevin.chap8.pinyin;
 
 import com.kevin.util.AnalyzerUtils;
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.analysis.Tokenizer;
+import org.apache.lucene.analysis.*;
 import org.wltea.analyzer.lucene.IKTokenizer;
 
 import java.io.IOException;
