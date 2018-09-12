@@ -39,7 +39,7 @@ public class TwoPhaseGroupingTest {
         Query query = new TermQuery(new Term("content", "random"));
         Sort groupSort = Sort.RELEVANCE;
         groupBy(searcher, query, groupSort);
-        groupSearch(searcher, query, groupSort);
+//        groupSearch(searcher, query, groupSort);
     }
 
     private static void groupBy(IndexSearcher searcher, Query query, Sort groupSort) throws IOException {
