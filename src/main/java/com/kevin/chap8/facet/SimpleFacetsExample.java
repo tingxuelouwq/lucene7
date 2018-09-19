@@ -21,33 +21,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 类名: SimpleFacetsTest<br/>
- * 包名：com.kevin.chap8.facet<br/>
+ * 类名: SimpleFacetsExample<br/>
+ * 包名：com.kevin.facet<br/>
  * 作者：kevin[wangqi2017@xinhua.org]<br/>
- * 时间：2018/9/16 10:56<br/>
+ * 时间：2018/9/19 10:10<br/>
  * 版本：1.0<br/>
- * 描述：<br/>
+ * 描述：Shows simple usage of faceted indexing and search.<br/>
  */
-/** Shows simple usage of faceted indexing and search. */
-public class SimpleFacetsTest {
+public class SimpleFacetsExample {
 
     private final Directory indexDir = FSDirectory.open(Paths.get("D:/lucene/index"));
     private final Directory taxoDir = FSDirectory.open(Paths.get("D:/lucene/facet"));
     private final FacetsConfig config = new FacetsConfig();
 
     /** Empty constructor */
-    public SimpleFacetsTest() throws IOException {
+    public SimpleFacetsExample() throws IOException {
         config.setHierarchical("Publish Date", true);
-        config.setHierarchical("Author", true);
     }
 
     /** Build the example index. */
     private void index() throws IOException {
-        //create a new index
-        IndexWriter indexWriter = new IndexWriter(this.indexDir,
-                new IndexWriterConfig(
-                        new WhitespaceAnalyzer()).setOpenMode
-                        (IndexWriterConfig.OpenMode.CREATE));
+        IndexWriter indexWriter = new IndexWriter(indexDir, new IndexWriterConfig(
+                new WhitespaceAnalyzer()).setOpenMode(IndexWriterConfig.OpenMode.CREATE));
+
         // Writes facet ords to a separate directory from the main index
         DirectoryTaxonomyWriter taxoWriter = new DirectoryTaxonomyWriter(taxoDir,
                 IndexWriterConfig.OpenMode.CREATE);
@@ -108,10 +104,7 @@ public class SimpleFacetsTest {
         return results;
     }
 
-    /**
-     * User runs a query and counts facets only without collecting the matching
-     * documents.
-     */
+    /** User runs a query and counts facets only without collecting the matching document. */
     private List<FacetResult> facetsOnly() throws IOException {
         DirectoryReader indexReader = DirectoryReader.open(indexDir);
         IndexSearcher searcher = new IndexSearcher(indexReader);
@@ -139,9 +132,8 @@ public class SimpleFacetsTest {
         return results;
     }
 
-    /**
-     * User drills down on 'Publish Date/2010', and we return facets for
-     * 'Author'
+    /** User drills down on 'Publish Date/2010', and we
+     * return facets for 'Author'
      */
     private FacetResult drillDown() throws IOException {
         DirectoryReader indexReader = DirectoryReader.open(indexDir);
@@ -152,7 +144,7 @@ public class SimpleFacetsTest {
         // documents ("browse only"):
         DrillDownQuery q = new DrillDownQuery(config);
 
-        // Now user drills down on Publish Date/2010:
+        // Now user drills down on Publish Date/2010.
         q.add("Publish Date", "2010");
         FacetsCollector fc = new FacetsCollector();
         FacetsCollector.search(searcher, q, 10, fc);
@@ -167,33 +159,11 @@ public class SimpleFacetsTest {
         return result;
     }
 
-    /**
-     * User drills down on 'Publish Date/2010', and we return facets for both
-     * 'Publish Date' and 'Author', using DrillSideways.
+    /** User drills down on 'Publish Date/2010', and we
+     * return facets for both 'Publish Date' and 'Author',
+     * using DrillSideways.
      */
-    private List<FacetResult> drillSideways() throws IOException {
-        DirectoryReader indexReader = DirectoryReader.open(indexDir);
-        IndexSearcher searcher = new IndexSearcher(indexReader);
-        TaxonomyReader taxoReader = new DirectoryTaxonomyReader(taxoDir);
 
-        // Passing no baseQuery means we drill down on all
-        // documents ("browse only"):
-        DrillDownQuery q = new DrillDownQuery(config);
-
-        // Now user drills down on Publish Date/2010:
-        q.add("Publish Date", "2010");
-
-        DrillSideways ds = new DrillSideways(searcher, config, taxoReader);
-        DrillSideways.DrillSidewaysResult result = ds.search(q, 10);
-
-        // Retrieve results
-        List<FacetResult> facets = result.facets.getAllDims(10);
-
-        indexReader.close();
-        taxoReader.close();
-
-        return facets;
-    }
 
     /** Runs the search example. */
     public List<FacetResult> runFacetOnly() throws IOException {
@@ -201,7 +171,7 @@ public class SimpleFacetsTest {
         return facetsOnly();
     }
 
-    /** Runs the search example. */
+    /** Runs the search example */
     public List<FacetResult> runSearch() throws IOException {
         index();
         return facetsWithSearch();
@@ -213,39 +183,22 @@ public class SimpleFacetsTest {
         return drillDown();
     }
 
-    /** Runs the drill-sideways example. */
-    public List<FacetResult> runDrillSideways() throws IOException {
-        index();
-        return drillSideways();
-    }
-
-    /** Runs the search and drill-down examples and prints the results. */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
         System.out.println("Facet counting example:");
         System.out.println("-----------------------");
-        SimpleFacetsTest example1 = new SimpleFacetsTest();
-        List<FacetResult> results1 = example1.runFacetOnly();
+        SimpleFacetsExample example = new SimpleFacetsExample();
+        List<FacetResult> results1 = example.runFacetOnly();
         System.out.println("Author: " + results1.get(0));
         System.out.println("Publish Date: " + results1.get(1));
 
         System.out.println("Facet counting example (combined facets and search):");
         System.out.println("-----------------------");
-        SimpleFacetsTest example = new SimpleFacetsTest();
         List<FacetResult> results = example.runSearch();
         System.out.println("Author: " + results.get(0));
         System.out.println("Publish Date: " + results.get(1));
 
-        System.out.println("\n");
         System.out.println("Facet drill-down example (Publish Date/2010):");
         System.out.println("---------------------------------------------");
         System.out.println("Author: " + example.runDrillDown());
-
-        System.out.println("\n");
-        System.out.println("Facet drill-sideways example (Publish Date/2010):");
-        System.out.println("---------------------------------------------");
-        for (FacetResult result : example.runDrillSideways()) {
-            System.out.println(result);
-        }
     }
-
 }
