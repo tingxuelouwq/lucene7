@@ -1,8 +1,14 @@
 package com.kevin.chap4.synonymanalyzer;
 
+import com.kevin.chap6.collector.AllDocCollector;
+import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.Term;
 import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
@@ -40,7 +46,16 @@ public class WordNetSynonymEngine implements SynonymEngine {
     @Override
     public String[] getSynonyms(String word) throws IOException {
         List<String> synList = new ArrayList<>();
-
-        return new String[0];
+        AllDocCollector collector = new AllDocCollector();
+        Query query = new TermQuery(new Term("word", word));
+        searcher.search(query, collector);
+        for (ScoreDoc hit : collector.getHits()) {
+            Document doc = searcher.doc(hit.doc);
+            String[] values = doc.getValues("syn");
+            for (String syn : values) {
+                synList.add(syn);
+            }
+        }
+        return synList.toArray(new String[0]);
     }
 }

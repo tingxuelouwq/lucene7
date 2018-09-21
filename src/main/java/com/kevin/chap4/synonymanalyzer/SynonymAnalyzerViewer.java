@@ -15,7 +15,7 @@ import java.io.IOException;
 public class SynonymAnalyzerViewer {
 
     public static void main(String[] args) throws IOException {
-        SynonymEngine engine = new TestSynonymEngine();
+        SynonymEngine engine = new WordNetSynonymEngine("D:/lucene/wordnet");
         AnalyzerUtils.displayTokensWithPosition(new SynonymAnalyzer(engine),
                 "The quick brown fox jumps over the lazy dog");
     }

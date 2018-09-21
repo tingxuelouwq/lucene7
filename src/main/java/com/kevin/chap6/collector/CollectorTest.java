@@ -6,11 +6,15 @@ import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.FSDirectory;
 
 import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,9 +27,12 @@ import java.util.Map;
  */
 public class CollectorTest extends TestCase {
 
-    private Directory directory;
+    private Directory directory = FSDirectory.open(Paths.get("D:/lucene/idnex"));
     private IndexReader reader;
     private IndexSearcher searcher;
+
+    public CollectorTest() throws IOException {
+    }
 
     @Override
     public void setUp() throws IOException {
@@ -40,7 +47,7 @@ public class CollectorTest extends TestCase {
         directory.close();
     }
 
-    public void testCollecting() throws IOException {
+    public void testBookLinkCollector() throws IOException {
         TermQuery query = new TermQuery(new Term("contents", "junit"));
         BookLinkCollector collector = new BookLinkCollector();
         searcher.search(query, collector);
@@ -50,5 +57,15 @@ public class CollectorTest extends TestCase {
         }
         TopDocs hits = searcher.search(query, 10);
         TestUtil.dumpHits(searcher, hits);
+    }
+
+    public void testAllDocCollector() throws IOException {
+        TermQuery query = new TermQuery(new Term("contents", "junit"));
+        AllDocCollector collector = new AllDocCollector();
+        searcher.search(query, collector);
+        List<ScoreDoc> list = collector.getHits();
+        for (ScoreDoc scoreDoc : list) {
+            System.out.println(searcher.doc(scoreDoc.doc).get("title"));
+        }
     }
 }

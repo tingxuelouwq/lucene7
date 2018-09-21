@@ -19,7 +19,7 @@ import java.util.Map;
  * @作者：kevin[wangqi2017@xinhua.org]
  * @时间：2018/7/21 15:23
  * @版本：1.0
- * @描述：
+ * @描述：为所有唯一的URL及其对应的书籍标题创建一个HashMap对象
  */
 public class BookLinkCollector implements Collector, LeafCollector {
 

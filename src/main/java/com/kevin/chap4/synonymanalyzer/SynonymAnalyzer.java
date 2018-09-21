@@ -2,6 +2,7 @@ package com.kevin.chap4.synonymanalyzer;
 
 import org.apache.lucene.analysis.*;
 import org.apache.lucene.analysis.core.StopAnalyzer;
+import org.apache.lucene.analysis.en.PorterStemFilter;
 import org.apache.lucene.analysis.standard.StandardFilter;
 import org.apache.lucene.analysis.standard.StandardTokenizer;
 
