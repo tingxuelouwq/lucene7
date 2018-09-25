@@ -55,7 +55,7 @@ public class DigesterXMLDocument {
             doc.add(new StringField("type", contact.getType(), Field.Store.YES));
             doc.add(new StringField("name", contact.getName(), Field.Store.YES));
             doc.add(new StringField("address", contact.getAddress(), Field.Store.YES));
-            doc.add(new StringField("city", contact.getCity(), Field.Store.YES));
+            doc.add(new StringField("city.txt", contact.getCity(), Field.Store.YES));
             doc.add(new StringField("province", contact.getProvince(), Field.Store.YES));
             doc.add(new StringField("postalcode", contact.getPostalcode(), Field.Store.YES));
             doc.add(new StringField("country", contact.getCountry(), Field.Store.YES));

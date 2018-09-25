@@ -1,4 +1,4 @@
-package com.kevin.chap8.ext;
+package com.kevin.chap8.extquery;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.DirectoryReader;

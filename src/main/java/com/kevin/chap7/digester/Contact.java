@@ -21,7 +21,7 @@ public class Contact {
     private String name;
     @BeanPropertySetter(pattern = "address-book/contact/address")
     private String address;
-    @BeanPropertySetter(pattern = "address-book/contact/city")
+    @BeanPropertySetter(pattern = "address-book/contact/city.txt")
     private String city;
     @BeanPropertySetter(pattern = "address-book/contact/province")
     private String province;

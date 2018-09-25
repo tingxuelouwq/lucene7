@@ -1,4 +1,4 @@
-package com.kevin.chap8.ext;
+package com.kevin.chap8.extquery;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;

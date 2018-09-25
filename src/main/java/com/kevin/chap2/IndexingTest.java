@@ -41,7 +41,7 @@ public class IndexingTest extends TestCase {
             doc.add(new StringField("id", ids[i], Field.Store.YES));
             doc.add(new StringField("country", countries[i], Field.Store.YES));
             doc.add(new TextField("contents", contents[i], Field.Store.NO));
-            doc.add(new TextField("city", cities[i], Field.Store.YES));
+            doc.add(new TextField("city.txt", cities[i], Field.Store.YES));
             writer.addDocument(doc);
         }
         writer.close();
@@ -111,16 +111,16 @@ public class IndexingTest extends TestCase {
 
     @Test
     public void testUpdate() throws IOException {
-        System.out.println(getHitCount("city", "amsterdam"));
+        System.out.println(getHitCount("city.txt", "amsterdam"));
         IndexWriter writer = getWriter();
         Document doc = new Document();
         doc.add(new StringField("id", "1", Field.Store.YES));
         doc.add(new StringField("country", "Netherlands", Field.Store.YES));
         doc.add(new TextField("contents", "China has a lot of meseums", Field.Store.NO));
-        doc.add(new TextField("city", "China", Field.Store.YES));
+        doc.add(new TextField("city.txt", "China", Field.Store.YES));
         writer.updateDocument(new Term("id", "1"), doc);
         writer.close();
-        System.out.println(getHitCount("city", "amsterdam"));
-        System.out.println(getHitCount("city", "china"));
+        System.out.println(getHitCount("city.txt", "amsterdam"));
+        System.out.println(getHitCount("city.txt", "china"));
     }
 }
