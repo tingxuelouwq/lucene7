@@ -110,7 +110,7 @@ public class SpatialExample {
                 strategy.makeDistanceValueSource(pt, DistanceUtils.DEG_TO_KM);
         // 按距离由近及远排序
         Sort distSort = new Sort(valuesSource.getSortField(false))
-                .rewrite(searcher); // false=ascist
+                .rewrite(searcher); // false=ascending
 
         SpatialArgs args = new SpatialArgs(SpatialOperation.Intersects,
                 ctx.getShapeFactory().circle(pt, DistanceUtils.dist2Degrees(3.0,
