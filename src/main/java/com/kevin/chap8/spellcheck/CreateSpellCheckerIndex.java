@@ -38,7 +38,7 @@ public class CreateSpellCheckerIndex {
         Directory dir2 = createIndex(indexField);
         IndexReader reader = DirectoryReader.open(dir2);
         IndexWriterConfig config = new IndexWriterConfig();
-        config.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
+        config.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
         spell.indexDictionary(new LuceneDictionary(reader, indexField), config, true);
         dir.close();
         dir2.close();

@@ -21,6 +21,7 @@ import java.io.IOException;
 public class ChineseDemo {
 
     private static final String[] strings = {"中华人民共和国在1949年建立，从此开始了新中国的伟大篇章。"};
+
     private static Analyzer[] analyzers = {
             new SimpleAnalyzer(),
             new StandardAnalyzer(),

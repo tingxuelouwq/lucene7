@@ -37,7 +37,7 @@ public class SpellCheckTest extends TestCase {
     private SpellChecker spellChecker;
 
     public void testSpellCheck() throws IOException {
-        String word = "明朝";
+        String word = "明朝那些事";
         search(word, 5);
     }
 
@@ -45,7 +45,7 @@ public class SpellCheckTest extends TestCase {
         Directory dir = FSDirectory.open(Paths.get(spellCheckDir));
         spellChecker = new SpellChecker(dir);
         IndexWriterConfig config = new IndexWriterConfig();
-        config.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
+        config.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
         spellChecker.indexDictionary(new PlainTextDictionary(Paths.get(dicPath)), config, true);
     }
 
